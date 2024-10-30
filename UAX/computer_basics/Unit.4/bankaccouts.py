@@ -48,6 +48,7 @@ class bank_account:
             bank_account.withdraw(self)
 
 
+# ----------------------- quitar esto luego -----------------------
 
 # import bank account from bankaccounts
 # print("please introduce the following data to create a bank account")
