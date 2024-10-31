@@ -19,3 +19,15 @@ cuenta.deposit()
 cuenta.withdraw()
 
 cuenta.check_balance()
+
+
+"""
+class savings_acc(bank_account):
+    def __init__(self,interest_rate = 5 ,inter_generated = 0):
+        super().__init__(account_number, name)
+        self.interest_rate = interest_rate
+        self.inter_generated = inter_generated
+    
+    def calculate_interest(self):
+        self.inter_generated = self.balance * self.interest_rate / 100
+"""
