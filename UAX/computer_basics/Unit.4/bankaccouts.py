@@ -1,11 +1,10 @@
 class bank_account:
-    def __init__(self, account_number, account_holder_name, balance=0):
-        self.account_number = account_number
+    def __init__(self, aj, account_holder_name, balance=0):
+        self.account_number = aj
         self.account_holder_name = account_holder_name
         self.balance = balance
-
     def check_balance(self):
-        print("---------------------------------------------------------------")  
+        print("---------------------------------------------------------------")
         print(f"Your current balance is: {self.balance}")
         print("---------------------------------------------------------------")
         print("")
@@ -46,19 +45,5 @@ class bank_account:
             print("It seems like something went wrong, please enter a number")   
             print("----------------------------------------------------------")   
             bank_account.withdraw(self)
-
-
-# ----------------------- quitar esto luego -----------------------
-
-# import bank account from bankaccounts
-# print("please introduce the following data to create a bank account")
-# name 
-
-"""
-bank1 = bank_account(12345, "pepe")
-
-bank1.deposit()
-
-bank1.withdraw()
-
-bank1.check_balance()"""
+    def __str__(self):
+        return "Account Number: " + str(self.account_number) + ",  Account Holder Name: " + str(self.account_holder_name) + ",  Balance: " + str(self.balance)
