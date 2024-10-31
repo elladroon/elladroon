@@ -8,10 +8,11 @@ account_number = random.randint(100000, 999999)
 
 
 cuenta = bank_account(account_number,name)
-print(f"congratulations for creating your account, your account number is: {account_number}")
+print("---------------------------------------------------------------")
+print(f"congratulations for creating your account, your info is the following: ")
 
-
-cuenta.check_balance()
+print(cuenta)
+print("---------------------------------------------------------------")
 
 cuenta.deposit()
 
