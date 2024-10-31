@@ -13,14 +13,31 @@ print(f"congratulations for creating your account, your info is the following: "
 
 print(cuenta)
 print("---------------------------------------------------------------")
+print("")
 
-cuenta.deposit()
+im = 0
+while True:
 
-cuenta.withdraw()
+    while im < 1 or im > 4:
+        im = int(input("To deposi enter 1, to withdraw enter 2, to check your check information enter 3, to exit 4: "))
+        if im < 1 or im > 4:
+            print("---------------------------------------------------------------")
+            print("Invalid input, please enter a number between 1 and 4.")
+            print("---------------------------------------------------------------")
 
-cuenta.check_balance()
+    if im == 1:
+        cuenta.deposit()
+        im = 0
+    elif im == 2:
+        cuenta.withdraw()
+        im = 0
+    elif im ==3:
+        cuenta.check_balance()
+        im = 0
+    elif im == 4:
+        break
 
-
+print("by")
 """
 class savings_acc(bank_account):
     def __init__(self,interest_rate = 5 ,inter_generated = 0):
