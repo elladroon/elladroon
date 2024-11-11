@@ -14,16 +14,36 @@ class savings_acc(bank_account):
     
     def calculate_interest(self):
         self.inter_generated = self.balance * self.interest_rate / 100
+        return self.inter_generated
+
+    def __str__(self):
+        return "Account Number (savings acc): " + str(self.account_number) + ",  Account Holder Name: " + str(self.account_holder_name) + ",  Balance: " + str(self.balance) + ", interest rate per month: " + str(self.interest_rate)
+    
+    def interes_time(self):
+        print ("current interest rate: " + str(self.interest_rate))
+        time = int(input("introduce de time in months to calculate the expected earnings: "))
+        total = time * self.balance * self.interest_rate / 100
+        print (f" the expected earnings are: {total}")
 
 
 class checking_acc(bank_account):
-    def __init__(self, account_number, name, interest_rate=5, inter_generated=0, balance=0):
+    def __init__(self, account_number, name, interest_rate=5, inter_generated=0, balance=0, overdraft = 200):
         super().__init__(account_number, name, balance)
         self.interest_rate = interest_rate
         self.inter_generated = inter_generated
+        self.overdraft = overdraft
     
-    def overdraft_lim(self):
-        pass
+    def withdraw(self):
+        amount = float(input("introduce the amount to withdraw: "))
+        if amount > self.balance + self.overdraft:
+            print("Insufficient funds!")
+        else:
+            self.balance -= amount
+            print(f"Your new balance is: {self.balance}")
+
+    def __str__(self):
+        return "Account Number (check acc): " + str(self.account_number) + ",  Account Holder Name: " + str(self.account_holder_name) + ",  Balance: " + str(self.balance) + ", overdraft: " + str(self.overdraft)
+
 #------------------------------------------------------------------------------
 
 
@@ -61,16 +81,18 @@ def welcome(name):
 
 
     else:
-        print("Invalid input, please enter a number between 1 and 4.")
+        print("Invalid input, please enter a number between 1 and 3.")
         welcome(name)
 
 
     
 
     while True:
-
-        im = int(input("To deposit enter 1, to withdraw enter 2, to check your information enter 3, to exit 4: "))
-            
+        if which == "2": #cuenta ahorros
+            im = int(input("To deposit enter 1, to withdraw enter 2, to check your information enter 3, to see expected earnings 4, to exit 0: "))
+        else: # las otras dos cuentas
+            im = int(input("To deposit enter 1, to withdraw enter 2, to check your information enter 3, to exit 0: "))
+          
         if im == 1:
             tipo_cuenta.deposit()
             
@@ -78,9 +100,14 @@ def welcome(name):
             tipo_cuenta.withdraw()
             
         elif im ==3:
+            print("-------------------------------------------------")
             print(tipo_cuenta)
+            print("-------------------------------------------------")
+        
+        elif im == 4 and which == "2":
+            tipo_cuenta.interes_time()
 
-        elif im == 4:
+        elif im == 0:
             while True:
                 salir = input("would you like to create another account? (y/n): ")
                 if salir == 'y':
@@ -99,6 +126,7 @@ def welcome(name):
             
         
         if salir == "n":
+            print("")
             break
 
 
@@ -111,3 +139,5 @@ print("----------------------------------------------------------------")
 print("")
 print(f"hi {name}")
 welcome(name)
+
+
